@@ -9,15 +9,12 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            
-            // ВСТАВЛЯЙ СЮДА:
-            $table->foreignId('wish_id')->unique()->constrained(); 
-            $table->foreignId('user_id')->constrained();
-            
+            $table->foreignId('wish_id')->unique()->constrained()->onDelete('cascade'); // Уникальный индекс! (Защита от двойного бронирования)
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Кто забронировал
             $table->timestamps();
         });
     }

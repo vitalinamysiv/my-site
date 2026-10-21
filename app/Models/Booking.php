@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
 {
-    //
-public function wish() { return $this->belongsTo(Wish::class); }
-public function user() { return $this->belongsTo(User::class); }}
+    protected $fillable = ['wish_id', 'user_id'];
+    
+    public function wish() { return $this->belongsTo(Wish::class); }
+    public function user() { return $this->belongsTo(User::class); }
+}

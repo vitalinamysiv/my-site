@@ -10,15 +10,14 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('wishlists', function (Blueprint $table) {
-            $table->id();
-            
-            // ВСТАВЛЯЙ СЮДА:
-            $table->foreignId('user_id')->constrained(); 
-            $table->string('title');
-            
-            $table->timestamps();
+        {
+       Schema::create('wishlists', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Владелец
+        $table->string('title');
+        $table->text('description')->nullable();
+        $table->boolean('is_public')->default(true);
+        $table->timestamps();
         });
     }
 
