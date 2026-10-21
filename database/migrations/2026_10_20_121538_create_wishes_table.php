@@ -9,17 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('wishes', function (Blueprint $table) {
             $table->id();
-            
-            // ВСТАВЛЯЙ СЮДА:
-            $table->foreignId('wishlist_id')->constrained(); 
+            $table->foreignId('wishlist_id')->constrained()->onDelete('cascade'); // К какому списку относится
             $table->string('title');
-            $table->decimal('price', 10, 2)->nullable(); 
-            $table->text('url')->nullable(); 
-            
+            $table->string('image')->nullable();
+            $table->decimal('price', 10, 2)->nullable();
+            $table->string('category')->nullable();
+            $table->text('description')->nullable();
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }
