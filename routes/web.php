@@ -19,3 +19,7 @@ Route::get('/hello/{name}', function ($name) {
 Route::get('/about', function () {
     return 'Имя: Виталина Мысив, Группа: БПИ-24-1';
 });
+
+use App\Http\Controllers\BackendController;
+
+Route::get('/backend', [BackendController::class, 'index']);
